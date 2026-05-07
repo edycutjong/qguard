@@ -1,5 +1,8 @@
 "use client";
 
+import { StatusBar } from "@/components/StatusBar";
+import { Footer } from "@/components/Footer";
+
 import { useState, useEffect } from "react";
 import { qvacService } from "@/lib/qvac";
 
@@ -45,6 +48,8 @@ export default function Home() {
   };
 
   return (
+    <>
+      <StatusBar />
     <div className="flex flex-col flex-1 h-screen overflow-hidden p-6 gap-6">
       {/* HEADER */}
       <header className="flex justify-between items-center bg-surface p-4 rounded-xl border border-primary/20 backdrop-blur-md">
@@ -272,5 +277,7 @@ export default function Home() {
         }
       `}} />
     </div>
+      <Footer />
+    </>
   );
 }

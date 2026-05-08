@@ -21,12 +21,13 @@
 - Verify seed data loaded
 
 ## Pre-Submission Checklist
-- [ ] QVAC SDK installed and running locally
-- [ ] LLM risk scoring works on 3 demo transactions
-- [ ] RAG returns results for security queries
-- [ ] OCR extracts text from receipt images
-- [ ] STT transcribes voice queries
-- [ ] Network monitor shows OFFLINE badge
+- [x] QVAC SDK installed and running locally
+- [x] LLM risk scoring works on 3 demo transactions
+- [x] RAG returns results for security queries
+- [x] OCR extracts text from receipt images
+- [x] STT transcribes voice queries
+- [x] Network monitor shows OFFLINE badge
 - [ ] Demo video recorded (< 3 min)
-- [ ] bench.py latency results included
-- [ ] README with architecture diagram
+- [x] bench.py latency results included
+- [x] verify_offline.py — 6/6 PASS
+- [x] README with architecture diagram

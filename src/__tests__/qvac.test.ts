@@ -10,11 +10,13 @@ describe('QVACService', () => {
     vi.useFakeTimers();
     // Simulate an unreachable backend so the mock fallback path is exercised.
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: false } as Response));
+    vi.spyOn(console, 'warn').mockImplementation(() => {});
   });
 
   afterEach(() => {
     vi.useRealTimers();
     vi.unstubAllGlobals();
+    vi.restoreAllMocks();
   });
 
   // ─── initialize ─── //
@@ -59,6 +61,15 @@ describe('QVACService', () => {
       await vi.advanceTimersByTimeAsync(3000);
       const result = await promise;
       expect(result.riskLevel).toBe('critical');
+    });
+
+    it('assigns high level for a score in 60-79 range', async () => {
+      vi.spyOn(Math, 'random').mockReturnValue(0.5); // 0.5 * 40 + 50 = 70
+      const promise = service.runLlmRiskScan('0xunknown');
+      await vi.advanceTimersByTimeAsync(3000);
+      const result = await promise;
+      expect(result.riskLevel).toBe('high');
+      vi.restoreAllMocks();
     });
 
     it('assigns medium level for a score in 40-59 range', async () => {

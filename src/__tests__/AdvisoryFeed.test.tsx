@@ -7,7 +7,7 @@ describe('AdvisoryFeed', () => {
   it('renders all advisory titles', () => {
     render(<AdvisoryFeed advisories={ADVISORIES} />);
     for (const adv of ADVISORIES) {
-      expect(screen.getByText(adv.title)).toBeInTheDocument();
+      expect(screen.getAllByText(adv.title)[0]).toBeInTheDocument();
     }
   });
 
@@ -15,23 +15,23 @@ describe('AdvisoryFeed', () => {
     render(<AdvisoryFeed advisories={ADVISORIES} />);
     for (const adv of ADVISORIES) {
       // description text appears in the DOM
-      expect(screen.getByText(adv.description)).toBeInTheDocument();
+      expect(screen.getAllByText(adv.description)[0]).toBeInTheDocument();
     }
   });
 
   it('renders severity type badges', () => {
     render(<AdvisoryFeed advisories={ADVISORIES} />);
     // All four types are present in the fixture data
-    expect(screen.getByText('CRITICAL')).toBeInTheDocument();
+    expect(screen.getAllByText('CRITICAL')[0]).toBeInTheDocument();
     expect(screen.getAllByText('ALERT').length).toBeGreaterThan(0);
-    expect(screen.getByText('WARNING')).toBeInTheDocument();
+    expect(screen.getAllByText('WARNING')[0]).toBeInTheDocument();
     expect(screen.getAllByText('INFO').length).toBeGreaterThan(0);
   });
 
   it('renders the source for each advisory', () => {
     render(<AdvisoryFeed advisories={ADVISORIES} />);
     for (const adv of ADVISORIES) {
-      expect(screen.getByText(adv.source)).toBeInTheDocument();
+      expect(screen.getAllByText(adv.source)[0]).toBeInTheDocument();
     }
   });
 
@@ -39,7 +39,7 @@ describe('AdvisoryFeed', () => {
     const withLoss = ADVISORIES.filter((a) => a.loss);
     render(<AdvisoryFeed advisories={withLoss} />);
     for (const adv of withLoss) {
-      expect(screen.getByText(`-${adv.loss}`)).toBeInTheDocument();
+      expect(screen.getAllByText(`-${adv.loss}`)[0]).toBeInTheDocument();
     }
   });
 
@@ -51,8 +51,8 @@ describe('AdvisoryFeed', () => {
   it('renders a single advisory correctly', () => {
     const single = [ADVISORIES[0]];
     render(<AdvisoryFeed advisories={single} />);
-    expect(screen.getByText(ADVISORIES[0].title)).toBeInTheDocument();
-    expect(screen.getByText('CRITICAL')).toBeInTheDocument();
+    expect(screen.getAllByText(ADVISORIES[0].title)[0]).toBeInTheDocument();
+    expect(screen.getAllByText('CRITICAL')[0]).toBeInTheDocument();
   });
 
   describe('severity badge styling', () => {

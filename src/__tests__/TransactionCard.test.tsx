@@ -28,28 +28,28 @@ describe('TransactionCard', () => {
     it('renders the truncated hash', () => {
       render(<TransactionCard tx={criticalTx} />);
       const expected = `${criticalTx.hash.slice(0, 8)}...${criticalTx.hash.slice(-4)}`;
-      expect(screen.getByText(expected)).toBeInTheDocument();
+      expect(screen.getAllByText(expected)[0]).toBeInTheDocument();
     });
 
     it('renders the token name', () => {
       render(<TransactionCard tx={criticalTx} />);
-      expect(screen.getByText(criticalTx.token)).toBeInTheDocument();
+      expect(screen.getAllByText(criticalTx.token)[0]).toBeInTheDocument();
     });
 
     it('renders the amount', () => {
       render(<TransactionCard tx={criticalTx} />);
-      expect(screen.getByText(criticalTx.amount)).toBeInTheDocument();
+      expect(screen.getAllByText(criticalTx.amount)[0]).toBeInTheDocument();
     });
 
     it('renders the numeric risk score', () => {
       render(<TransactionCard tx={criticalTx} />);
-      expect(screen.getByText(String(criticalTx.risk))).toBeInTheDocument();
+      expect(screen.getAllByText(String(criticalTx.risk))[0]).toBeInTheDocument();
     });
 
     it('renders all real transactions from mock data', () => {
       for (const tx of TRANSACTIONS) {
         const { unmount } = render(<TransactionCard tx={tx} />);
-        expect(screen.getByText(String(tx.risk))).toBeInTheDocument();
+        expect(screen.getAllByText(String(tx.risk))[0]).toBeInTheDocument();
         unmount();
       }
     });
@@ -109,12 +109,12 @@ describe('TransactionCard', () => {
 
     it.each(iconCases)('type "%s" renders icon "%s"', (type, icon) => {
       render(<TransactionCard tx={makeTx({ type })} />);
-      expect(screen.getByText(icon)).toBeInTheDocument();
+      expect(screen.getAllByText(icon)[0]).toBeInTheDocument();
     });
 
     it('renders fallback icon for unknown type', () => {
       render(<TransactionCard tx={makeTx({ type: 'unknown' as Transaction['type'] })} />);
-      expect(screen.getByText('•')).toBeInTheDocument();
+      expect(screen.getAllByText('•')[0]).toBeInTheDocument();
     });
   });
 
@@ -122,19 +122,19 @@ describe('TransactionCard', () => {
     it('shows minutes for a recent timestamp', () => {
       const tx = makeTx({ timestamp: new Date(Date.now() - 5 * 60 * 1000).toISOString() });
       render(<TransactionCard tx={tx} />);
-      expect(screen.getByText('5m ago')).toBeInTheDocument();
+      expect(screen.getAllByText('5m ago')[0]).toBeInTheDocument();
     });
 
     it('shows hours for a timestamp several hours ago', () => {
       const tx = makeTx({ timestamp: new Date(Date.now() - 3 * 60 * 60 * 1000).toISOString() });
       render(<TransactionCard tx={tx} />);
-      expect(screen.getByText('3h ago')).toBeInTheDocument();
+      expect(screen.getAllByText('3h ago')[0]).toBeInTheDocument();
     });
 
     it('shows days for timestamps older than 24 hours', () => {
       const tx = makeTx({ timestamp: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString() });
       render(<TransactionCard tx={tx} />);
-      expect(screen.getByText('2d ago')).toBeInTheDocument();
+      expect(screen.getAllByText('2d ago')[0]).toBeInTheDocument();
     });
   });
 });

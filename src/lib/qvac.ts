@@ -1,4 +1,4 @@
-import { TRANSACTIONS, ADVISORIES, RECEIPTS, VOICE_QUERIES, type Transaction, type Advisory, type Receipt, type VoiceQuery } from "./mock-data";
+import { TRANSACTIONS, ADVISORIES, RECEIPTS, VOICE_QUERIES, type Advisory, type Receipt, type VoiceQuery } from "./mock-data";
 
 // ─── QVAC SDK Wrapper ─── //
 // Simulates local QVAC SDK with realistic latencies.
@@ -33,7 +33,7 @@ export class QVACService {
       if (!response.ok) throw new Error("Backend offline");
       const data = await response.json();
       return { ...data, latencyMs: performance.now() - start };
-    } catch (_err) {
+    } catch {
       console.warn("[QVAC SDK] LLM backend unreachable, falling back to mock");
       // Simulate realistic processing latency
       await new Promise((resolve) => setTimeout(resolve, 1200 + Math.random() * 800));
@@ -85,7 +85,7 @@ export class QVACService {
       if (!response.ok) throw new Error("Backend offline");
       const data = await response.json();
       return { ...data, latencyMs: performance.now() - start };
-    } catch (_err) {
+    } catch {
       console.warn("[QVAC SDK] RAG backend unreachable, falling back to mock");
       await new Promise((resolve) => setTimeout(resolve, 400 + Math.random() * 300));
 
@@ -127,7 +127,7 @@ export class QVACService {
       if (!response.ok) throw new Error("Backend offline");
       const data = await response.json();
       return { ...data, latencyMs: performance.now() - start };
-    } catch (_err) {
+    } catch {
       console.warn("[QVAC SDK] OCR backend unreachable, falling back to mock");
       await new Promise((resolve) => setTimeout(resolve, 800 + Math.random() * 500));
 
@@ -166,7 +166,7 @@ export class QVACService {
       if (!response.ok) throw new Error("Backend offline");
       const data = await response.json();
       return { ...data, latencyMs: performance.now() - start };
-    } catch (_err) {
+    } catch {
       console.warn("[QVAC SDK] STT backend unreachable, falling back to mock");
       await new Promise((resolve) => setTimeout(resolve, 1000 + Math.random() * 500));
 

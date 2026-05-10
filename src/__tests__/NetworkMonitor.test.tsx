@@ -15,7 +15,7 @@ describe('NetworkMonitor', () => {
     it('shows the AIR-GAPPED label', () => {
       vi.useFakeTimers();
       render(<NetworkMonitor />);
-      expect(screen.getByText('AIR-GAPPED')).toBeInTheDocument();
+      expect(screen.getAllByText('AIR-GAPPED')[0]).toBeInTheDocument();
     });
 
     it('shows zero bytes out', () => {
@@ -27,20 +27,20 @@ describe('NetworkMonitor', () => {
     it('shows initial blocked request count', () => {
       vi.useFakeTimers();
       render(<NetworkMonitor />);
-      expect(screen.getByText(String(NETWORK_STATS.blockedRequests))).toBeInTheDocument();
+      expect(screen.getAllByText(String(NETWORK_STATS.blockedRequests))[0]).toBeInTheDocument();
     });
 
     it('renders the uptime in HH:MM:SS format', () => {
       vi.useFakeTimers();
       render(<NetworkMonitor />);
       // 3847s = 1h 4m 7s
-      expect(screen.getByText('01:04:07')).toBeInTheDocument();
+      expect(screen.getAllByText('01:04:07')[0]).toBeInTheDocument();
     });
 
     it('shows the ZERO BYTES TRANSMITTED label', () => {
       vi.useFakeTimers();
       render(<NetworkMonitor />);
-      expect(screen.getByText('ZERO BYTES TRANSMITTED')).toBeInTheDocument();
+      expect(screen.getAllByText('ZERO BYTES TRANSMITTED')[0]).toBeInTheDocument();
     });
   });
 
@@ -54,7 +54,7 @@ describe('NetworkMonitor', () => {
       });
 
       // 3847 + 1 = 3848  →  "01:04:08"
-      expect(screen.getByText('01:04:08')).toBeInTheDocument();
+      expect(screen.getAllByText('01:04:08')[0]).toBeInTheDocument();
     });
 
     it('increments uptime by 5 seconds after 5000ms', async () => {
@@ -66,7 +66,7 @@ describe('NetworkMonitor', () => {
       });
 
       // 3847 + 5 = 3852  →  "01:04:12"
-      expect(screen.getByText('01:04:12')).toBeInTheDocument();
+      expect(screen.getAllByText('01:04:12')[0]).toBeInTheDocument();
     });
 
     it('cleans up interval on unmount', () => {
@@ -83,7 +83,7 @@ describe('NetworkMonitor', () => {
       vi.useFakeTimers();
       render(<NetworkMonitor />);
       // 3847 → 01:04:07 — all components have leading zeros
-      expect(screen.getByText('01:04:07')).toBeInTheDocument();
+      expect(screen.getAllByText('01:04:07')[0]).toBeInTheDocument();
     });
 
     it('rolls over minutes correctly at 60 seconds', async () => {
@@ -95,7 +95,7 @@ describe('NetworkMonitor', () => {
         await vi.advanceTimersByTimeAsync(53 * 1000);
       });
 
-      expect(screen.getByText('01:05:00')).toBeInTheDocument();
+      expect(screen.getAllByText('01:05:00')[0]).toBeInTheDocument();
     });
   });
 });

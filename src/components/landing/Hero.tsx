@@ -26,7 +26,7 @@ export function Hero() {
 
         <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-8 text-slate-100">
           The Ultimate Defense for <br className="hidden md:block" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
+          <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-purple-500">
             Web3 Wallets
           </span>
         </h1>

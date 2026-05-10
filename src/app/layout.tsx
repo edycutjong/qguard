@@ -8,6 +8,20 @@ const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jet
 export const metadata: Metadata = {
   title: "Qguard | Local-First Wallet Security",
   description: "Offline transaction scanner and risk forensics via Tether QVAC SDK.",
+  icons: {
+    icon: "/icon.svg",
+    apple: "/apple-icon.png",
+  },
+  openGraph: {
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Qguard - Local-First Wallet Security",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

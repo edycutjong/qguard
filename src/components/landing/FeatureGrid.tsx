@@ -61,7 +61,7 @@ export function FeatureGrid() {
           Powered by Tether QVAC
         </h2>
         <p className="text-slate-400 max-w-2xl mx-auto">
-          Our specialized AI stack provides comprehensive coverage across text, vision, and audio, ensuring you're protected from every angle.
+          Our specialized AI stack provides comprehensive coverage across text, vision, and audio, ensuring you&apos;re protected from every angle.
         </p>
       </div>
 

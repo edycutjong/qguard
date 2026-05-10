@@ -13,7 +13,7 @@ export function RiskGauge({ score, size = 140, animated = true }: RiskGaugeProps
 
   useEffect(() => {
     if (!animated) {
-      setDisplayScore(score);
+      setTimeout(() => setDisplayScore(score), 0);
       return;
     }
 
